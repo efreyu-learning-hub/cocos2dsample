@@ -46,6 +46,25 @@ endif()
 # record sources, headers, resources...
 set(GAME_SOURCE)
 set(GAME_HEADER)
+function(add_game_sources BASE_DIR)
+    file(GLOB_RECURSE GAME_SRC_FILES
+            CONFIGURE_DEPENDS
+            ${BASE_DIR}/*.cpp
+            ${BASE_DIR}/*.c
+    )
+
+    file(GLOB_RECURSE GAME_HDR_FILES
+            CONFIGURE_DEPENDS
+            ${BASE_DIR}/*.h
+            ${BASE_DIR}/*.hpp
+    )
+
+    list(APPEND GAME_SOURCE ${GAME_SRC_FILES})
+    list(APPEND GAME_HEADER ${GAME_HDR_FILES})
+
+    set(GAME_SOURCE ${GAME_SOURCE} PARENT_SCOPE)
+    set(GAME_HEADER ${GAME_HEADER} PARENT_SCOPE)
+endfunction()
 
 set(GAME_RES_FOLDER
     "${CMAKE_CURRENT_SOURCE_DIR}/Resources"
@@ -57,12 +76,11 @@ endif()
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
-     Classes/HelloWorldScene.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
-     Classes/HelloWorldScene.h
      )
+add_game_sources(Classes/gameplay)
 
 if(ANDROID)
     # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
