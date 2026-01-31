@@ -23,6 +23,8 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
+
+#include "cocos2d_debug/imGuiLayer.h"
 #include "gameplay/HelloWorldScene.h"
 
 // #define USE_AUDIO_ENGINE 1
@@ -105,6 +107,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     register_all_packages();
+
+#ifdef IMGUI_ENABLED
+    debugModule::ImGuiDebugLayer::initializeLayer();
+#endif
 
     // create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();

@@ -46,6 +46,7 @@ endif()
 # record sources, headers, resources...
 set(GAME_SOURCE)
 set(GAME_HEADER)
+add_subdirectory(Classes/cocos2d_debug) # add debug draw module
 function(add_game_sources BASE_DIR)
     file(GLOB_RECURSE GAME_SRC_FILES
             CONFIGURE_DEPENDS
@@ -147,7 +148,8 @@ else()
     target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
 endif()
 
-target_link_libraries(${APP_NAME} cocos2d)
+initDebugModule()
+target_link_libraries(${APP_NAME} cocos2d ${GENERIC_LIB})
 target_include_directories(${APP_NAME}
         PRIVATE Classes
         PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
