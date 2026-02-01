@@ -24,7 +24,7 @@
 
 #include "AppDelegate.h"
 
-#include "cocos2d_debug/imGuiLayer.h"
+#include "cocos2d_debug/imgui_debug_layer.h"
 #include "gameplay/HelloWorldScene.h"
 
 // #define USE_AUDIO_ENGINE 1
@@ -35,7 +35,7 @@
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
+static cocos2d::Size designResolutionSize = cocos2d::Size(768, 1024);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(320, 480);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(768, 1024);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(1536, 2048);
